@@ -68,20 +68,13 @@
 
     e.preventDefault();
    
-   var name = 'sanju';//$("input[name=name]").val();
-   //var password = $("input[name=password]").val();
-   //var email = $("input[name=email]").val();
-
-    alert('sanju');
+    var userNname = $("input[name=userName]").val();
+    var password = $("input[name=password]").val();   
     var form=this;
     $.ajax({
       type: 'POST',
       url: "{{ route('loginRequest.post') }}",
-      data: {git:name}, //new FormData(this),
-      async: false,
-      cache: false,
-      contentType: false,
-      processData: false,
+      data:{name:userNname, password:password}, //new FormData(this),
       success: function (data)
       {
         alert(data);

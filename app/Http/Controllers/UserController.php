@@ -9,8 +9,8 @@ class UserController extends Controller
     //
     public function adminLogin(Request $request)
     {
-        //$name = $request->input('name');
-        //$name = $request->input('name');
-        echo 'Got Simple AJaxrequest'; 
+        // $name = $request->input('name');
+        $input = $request->all();
+        perint_r($input);
     }
 }
