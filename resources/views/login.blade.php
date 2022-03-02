@@ -77,7 +77,7 @@
     $.ajax({
       type: 'POST',
       url: "{{ route('loginRequest.post') }}",
-      data: {name:name}, //new FormData(this),
+      data: {git:name}, //new FormData(this),
       async: false,
       cache: false,
       contentType: false,

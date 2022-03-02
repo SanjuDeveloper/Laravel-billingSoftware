@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-//use App\Http\Controllers;
 use App\Http\Controllers\UserController;
+//use App\Http\Controllers;
 
 
 /*
@@ -19,6 +19,7 @@ use App\Http\Controllers\UserController;
 Route::get('/', function () { 
     return view('login');
 });
+
 Route::view('/main','dashboard');
-//Route::get('/user/{id}', [UserController::class, 'show']);
 Route::post('/loginRequest', [UserController::class, 'adminLogin'])->name('loginRequest.post');
+//Route::get('/user/{id}', [UserController::class, 'show']);
