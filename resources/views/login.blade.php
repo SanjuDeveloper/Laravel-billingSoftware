@@ -9,6 +9,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="css/styles.css">
+  <meta name="csrf-token" content="{{ csrf_token() }}" />
+
 </head>
 <body>
 
@@ -28,12 +30,12 @@
    <h3 class="taxt-center text-white">Admin Login </h3>
    <h4 class="text-danger" id="sms"></h4>
       <div class="form-group">
-      <input type="text" class="form-control" id="uname" placeholder="Enter username" name="uname" required>
+      <input type="text" class="form-control" id="userName" placeholder="Enter username" name="userName" required>
       <div class="valid-feedback">Valid.</div>
       <div class="invalid-feedback">Please fill out this field.</div>
     </div>
     <div class="form-group">
-      <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd" required>
+      <input type="password" class="form-control" id="password" placeholder="Enter password" name="password" required>
       <div class="valid-feedback">Valid.</div>
       <div class="invalid-feedback">Please fill out this field.</div>
     </div>
@@ -55,21 +57,34 @@
 </html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script>  
-  $('#myForm').submit(function() 
-  {
-    
+   $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+  $('#myForm').submit(function(e) 
+  { 
+
+    e.preventDefault();
+   
+   var name = 'sanju';//$("input[name=name]").val();
+   //var password = $("input[name=password]").val();
+   //var email = $("input[name=email]").val();
+
+    alert('sanju');
     var form=this;
     $.ajax({
       type: 'POST',
-      url: 'login-exec.php',
-      data: new FormData(this),
+      url: "{{ route('loginRequest.post') }}",
+      data: {name:name}, //new FormData(this),
       async: false,
       cache: false,
       contentType: false,
       processData: false,
       success: function (data)
       {
-        
+        alert(data);
         var obj = JSON.parse(data);
         var login = obj.login;
         if(login==1)
